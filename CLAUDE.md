@@ -203,6 +203,9 @@ python scripts/python/cli.py
 2. **New data sources**: Create in `agents/connectors/`; follow the pattern of `chroma.py`
 3. **New trading strategies**: Subclass or extend Executor; override `filter_events_with_rag()` or `evaluate_market()`
 4. **New CLI commands**: Add function with `@click.command()` decorator in `scripts/python/cli.py`
+5. **Custom edge detection**: Subclass `EdgeDetector` and override `estimate_true_probability()` or `detect_edge_signals()`
+   - Example: Crypto governance detector, sports betting specialist, etc.
+   - See `EDGE_DETECTION_GUIDE.md` for patterns
 
 ### LLM Integration Patterns
 
@@ -249,17 +252,97 @@ def test_market_validation():
 - Keep changes modular; avoid coupling unrelated features
 - Update `CLAUDE.md` if adding new modules or significant workflows
 
+## Edge Detection Module
+
+The edge detection system identifies trading opportunities by comparing **market-implied probabilities** against **estimated true probabilities**.
+
+### Core Concept
+
+A trading edge exists when: `|True Probability - Market Probability| > Fee Threshold (3%)`
+
+### Key Components
+
+- **EdgeDetector** (`agents/application/edge_detection.py`): Main algorithm
+- **MarketEdgeAnalysis**: Comprehensive edge analysis output
+  - Probability gaps for each outcome
+  - Edge strength scores (0-1)
+  - Market efficiency metrics
+  - Risk assessment and invalidators
+  - Trading recommendations
+- **EdgeSignals**: Inefficiency indicators
+  - Information asymmetry
+  - Emotional overreaction
+  - Low liquidity
+  - Probability math errors
+  - Time-zone lag
+  - Complex wording
+
+### How It Works
+
+1. **Extract Prices**: Get market prices and normalize to probabilities
+2. **Estimate True Probability**: Use LLM with superforecaster prompts to estimate actual probability
+3. **Calculate Gap**: Difference between true and market probability
+4. **Score Edge**: Gap × confidence, accounting for fee threshold
+5. **Assess Efficiency**: Score market liquidity, volume, spread, age
+6. **Detect Signals**: Identify inefficiency patterns
+7. **Assess Risk**: Identify factors that could invalidate the edge
+8. **Rank**: Sort markets by edge quality
+
+### Usage Example
+
+```python
+from agents.application.executor import Executor
+
+executor = Executor()
+
+# Get markets (from event filtering, etc.)
+markets = get_my_markets()
+
+# Find best edges
+best_edges = executor.find_best_edges_in_markets(
+    markets,
+    min_quality=0.15  # Only 15%+ quality edges
+)
+
+for market, analysis in best_edges:
+    if analysis.is_tradeable:
+        print(f"Trade: {analysis.trade_recommendation}")
+        print(f"Quality: {analysis.edge_quality_score:.1%}")
+        print(f"Risk: {analysis.risk_level}")
+
+        # Size position based on edge
+        position_size = calculate_kelly(analysis)
+```
+
+### Key Thresholds
+
+- **Min Edge Quality**: 15% (edge_quality_score ≥ 0.15)
+- **Min Probability Gap**: 3% (covers fees)
+- **Max Acceptable Spread**: 20% (5%+ = inefficient)
+- **Min Liquidity**: $10k USD
+
+These can be tuned in `edge_detection.py` and integrated trading logic.
+
+### Documentation & Examples
+
+- **EDGE_DETECTION_GUIDE.md**: Comprehensive guide with patterns and pitfalls
+- **examples/edge_detection_example.py**: End-to-end usage example
+- **CONTRIBUTING.md**: Contributing guidelines
+
 ## Key Files Reference
 
 | File | Purpose |
 |------|---------|
 | `agents/application/trade.py` | Main entry point for trading |
-| `agents/application/executor.py` | Core agent decision logic |
+| `agents/application/executor.py` | Core agent decision logic + edge detection |
+| `agents/application/edge_detection.py` | **NEW: Edge detection algorithm** |
 | `agents/polymarket/polymarket.py` | Polymarket API wrapper |
 | `agents/polymarket/gamma.py` | Market metadata client |
 | `agents/connectors/chroma.py` | Vector DB for RAG |
-| `agents/utils/objects.py` | Pydantic data models |
+| `agents/utils/objects.py` | Pydantic data models (+ edge models) |
 | `scripts/python/cli.py` | Command-line interface |
+| `examples/edge_detection_example.py` | **NEW: Edge detection example** |
+| `agents/application/EDGE_DETECTION_GUIDE.md` | **NEW: Detailed guide** |
 | `requirements.txt` | Python dependencies |
 | `.env.example` | Environment variable template |
 | `.pre-commit-config.yaml` | Code formatting rules |
