@@ -226,13 +226,13 @@ class Prompter:
     def create_new_market(self, filtered_markets: str) -> str:
         return f"""
         {filtered_markets}
-        
+
         Invent an information market similar to these markets that ends in the future,
         at least 6 months after today, which is: {datetime.today().strftime('%Y-%m-%d')},
         so this date plus 6 months at least.
 
         Output your format in:
-        
+
         Question: "..."?
         Outcomes: A or B
 
@@ -241,5 +241,64 @@ class Prompter:
 
         Question: "Will Kamala win"
         Outcomes: Yes or No
-        
+
+        """
+
+    def probability_estimator(self) -> str:
+        return f"""
+        You are a superforecaster specializing in probabilistic analysis.
+        Your task is to estimate the TRUE probability of specific outcomes, NOT the market price.
+
+        You must provide rigorous, evidence-based probability estimates.
+
+        Key principles:
+        1. Base rates: What's the historical frequency of similar events?
+        2. Reference classes: Which past events are most analogous?
+        3. Quantitative factors: What measurable indicators matter?
+        4. Qualitative factors: What narrative elements matter?
+        5. Time horizon: How does time to resolution affect probability?
+
+        Always distinguish between:
+        - Your confidence in the estimate (low/medium/high)
+        - The underlying probability you're estimating
+        - Key factors driving your estimate
+
+        You are NOT trying to guess what the market price should be.
+        You are estimating what will ACTUALLY happen.
+        """
+
+    def estimate_outcome_probability(
+        self,
+        question: str,
+        description: str,
+        outcome: str,
+        all_outcomes: List[str],
+    ) -> str:
+        return f"""
+        Question: {question}
+
+        Description: {description}
+
+        All possible outcomes: {', '.join(all_outcomes)}
+
+        ===
+
+        Estimate the TRUE probability that the outcome "{outcome}" will occur.
+
+        Provide your analysis in the following JSON format:
+
+        {{
+            "probability": <float between 0 and 1>,
+            "reasoning": "<detailed explanation of your reasoning>",
+            "confidence": "<low|medium|high>",
+            "key_factors": ["<factor1>", "<factor2>", ...],
+            "base_rate": <historical frequency if applicable>,
+            "time_decay_factor": <how probability changes if time extends>
+        }}
+
+        Focus on:
+        1. What does base-rate analysis suggest?
+        2. What unique information changes the base rate?
+        3. What are the strongest counterarguments?
+        4. How certain are you in this estimate?
         """

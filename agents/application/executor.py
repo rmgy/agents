@@ -12,8 +12,9 @@ from langchain_openai import ChatOpenAI
 
 from agents.polymarket.gamma import GammaMarketClient as Gamma
 from agents.connectors.chroma import PolymarketRAG as Chroma
-from agents.utils.objects import SimpleEvent, SimpleMarket
+from agents.utils.objects import SimpleEvent, SimpleMarket, MarketEdgeAnalysis
 from agents.application.prompts import Prompter
+from agents.application.edge_detection import EdgeDetector
 from agents.polymarket.polymarket import Polymarket
 
 def retain_keys(data, keys_to_retain):
@@ -42,6 +43,7 @@ class Executor:
         self.gamma = Gamma()
         self.chroma = Chroma()
         self.polymarket = Polymarket()
+        self.edge_detector = EdgeDetector(model=default_model)
 
     def get_llm_response(self, user_input: str) -> str:
         system_message = SystemMessage(content=str(self.prompter.market_analyst()))
@@ -196,3 +198,57 @@ class Executor:
         result = self.llm.invoke(prompt)
         content = result.content
         return content
+
+    def detect_edge_in_market(self, market: SimpleMarket) -> MarketEdgeAnalysis:
+        """
+        Analyze a single market for trading edges.
+
+        Returns comprehensive edge analysis including:
+        - Probability gap between market and estimated true probability
+        - Edge strength and quality score
+        - Market efficiency metrics
+        - Risk assessment and trading recommendation
+        """
+        print(f"\n[EDGE DETECTION] Analyzing {market.question}...")
+        analysis = self.edge_detector.analyze_market(market)
+
+        # Print results
+        if analysis.is_tradeable:
+            print(f"✓ EDGE DETECTED: {analysis.trade_recommendation}")
+            print(f"  Quality Score: {analysis.edge_quality_score:.1%}")
+            print(f"  Probability Gap: {analysis.strongest_edge_probability_gap:.1%}")
+            print(f"  Risk Level: {analysis.risk_level}")
+            print(f"  Signals: {', '.join([s.value for s in analysis.detected_signals])}")
+        else:
+            print(f"✗ No tradeable edge detected")
+            print(f"  Quality Score: {analysis.edge_quality_score:.1%}")
+            print(f"  Risk Level: {analysis.risk_level}")
+
+        return analysis
+
+    def find_best_edges_in_markets(
+        self, markets: "list[SimpleMarket]", min_quality: float = 0.15
+    ) -> "list[tuple[SimpleMarket, MarketEdgeAnalysis]]":
+        """
+        Analyze multiple markets and rank by edge quality.
+
+        Returns list of (market, analysis) tuples sorted by edge quality.
+        """
+        print(f"\n[EDGE DETECTION] Analyzing {len(markets)} markets for edges...\n")
+
+        ranked_markets = self.edge_detector.rank_markets_by_edge(markets)
+
+        # Filter by minimum quality
+        good_edges = [
+            (m, a) for m, a in ranked_markets if a.edge_quality_score >= min_quality
+        ]
+
+        print(f"\nFound {len(good_edges)} markets with quality >= {min_quality:.0%}")
+        for i, (market, analysis) in enumerate(good_edges[:5], 1):
+            print(f"\n{i}. {market.question}")
+            print(f"   Edge Quality: {analysis.edge_quality_score:.1%}")
+            print(f"   Best Edge: {analysis.best_edge_outcome}")
+            print(f"   Gap: {analysis.strongest_edge_probability_gap:.1%}")
+            print(f"   Tradeable: {analysis.is_tradeable}")
+
+        return good_edges

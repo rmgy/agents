@@ -1,6 +1,7 @@
 from __future__ import annotations
-from typing import Optional, Union
+from typing import Optional, Union, List, Dict, Any
 from pydantic import BaseModel
+from enum import Enum
 
 
 class Trade(BaseModel):
@@ -226,3 +227,74 @@ class Article(BaseModel):
     urlToImage: Optional[str]
     publishedAt: Optional[str]
     content: Optional[str]
+
+
+class EdgeSignal(str, Enum):
+    """Enumeration of edge signals that indicate market inefficiency."""
+    INFORMATION_ASYMMETRY = "information_asymmetry"
+    EMOTIONAL_OVERREACTION = "emotional_overreaction"
+    LOW_LIQUIDITY = "low_liquidity"
+    PROBABILITY_MATH_ERROR = "probability_math_error"
+    TIME_ZONE_LAG = "time_zone_lag"
+    COMPLEX_WORDING = "complex_wording"
+    SPECIALIST_DOMAIN = "specialist_domain"
+
+
+class OutcomeEdgeAnalysis(BaseModel):
+    """Analysis of edge for a single market outcome."""
+    outcome: str
+    outcome_index: int
+    market_implied_probability: float
+    estimated_true_probability: float
+    probability_gap: float
+    edge_strength: float  # 0-1, how confident the edge is
+    reasoning: str
+    confidence: float  # 0-1, confidence in the estimate
+
+
+class MarketEfficiencyScore(BaseModel):
+    """Metrics indicating market efficiency/liquidity."""
+    liquidity_score: float  # 0-1, higher = more liquid/efficient
+    volume_score: float  # 0-1, higher = more traded
+    spread_score: float  # 0-1, lower spread = more efficient
+    age_score: float  # 0-1, older markets are more efficient
+    volatility_score: float  # 0-1, higher volatility = potential mispricing
+    overall_efficiency: float  # 0-1, combined score
+
+
+class MarketEdgeAnalysis(BaseModel):
+    """Comprehensive edge analysis for a single market."""
+    market_id: str
+    market_question: str
+    analysis_timestamp: str
+
+    # Core edge metrics
+    outcome_analyses: List[OutcomeEdgeAnalysis]
+    best_edge_outcome: str  # Which outcome has the strongest edge
+    strongest_edge_probability_gap: float
+
+    # Market efficiency
+    efficiency_score: MarketEfficiencyScore
+
+    # Edge signals detected
+    detected_signals: List[EdgeSignal]
+
+    # Overall metrics
+    edge_quality_score: float  # 0-1, composite score
+    is_tradeable: bool  # Should we trade on this?
+    trade_recommendation: Optional[str]  # Specific trading action
+
+    # Risk assessment
+    potential_invalidators: List[str]  # Factors that could destroy the edge
+    risk_level: str  # "low", "medium", "high"
+
+
+class ProbabilityEstimate(BaseModel):
+    """LLM-generated probability estimate for an outcome."""
+    outcome: str
+    estimated_probability: float
+    reasoning: str
+    confidence_level: str  # "low", "medium", "high"
+    key_factors: List[str]
+    base_rate: Optional[float] = None
+    time_decay_factor: Optional[float] = None
