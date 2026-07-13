@@ -146,6 +146,8 @@ Files for managing your local environment, server set-up to run the application 
 
 `cli.py` is the primary user interface for the repo. Users can run various commands to interact with the Polymarket API, retrieve relevant news articles, query local data, send data/prompts to LLMs, and execute trades in Polymarkets.
 
+`server.py` runs the agent behind a FastAPI app. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for a guide to self-hosting it securely with Caddy and a Cloudflare Tunnel.
+
 Commands should follow this format:
 
 `python scripts/python/cli.py command_name [attribute value] [attribute value]`
