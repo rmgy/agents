@@ -4,6 +4,7 @@ from devtools import pprint
 from agents.polymarket.polymarket import Polymarket
 from agents.connectors.chroma import PolymarketRAG
 from agents.connectors.news import News
+from agents.connectors.cloudflare import CloudflareAI
 from agents.application.trade import Trader
 from agents.application.executor import Executor
 from agents.application.creator import Creator
@@ -122,6 +123,50 @@ def run_autonomous_trader() -> None:
     """
     trader = Trader()
     trader.one_best_trade()
+
+
+@app.command()
+def generate_image(
+    prompt: str,
+    model: str = "flux-pro",
+    output_file: str = None,
+) -> None:
+    """
+    Generate an image using Cloudflare Workers AI.
+
+    Models available: flux-pro, flux-realism, flux-raw, flux-kontext, stable-diffusion
+    """
+    try:
+        cloudflare_ai = CloudflareAI()
+        print(f"Generating image with prompt: {prompt}")
+        print(f"Using model: {model}")
+
+        if output_file:
+            success = cloudflare_ai.generate_image_file(prompt, output_file, model)
+            if success:
+                print(f"Image successfully saved to {output_file}")
+            else:
+                print("Failed to generate and save image")
+        else:
+            result = cloudflare_ai.generate_image(prompt, model)
+            pprint(result)
+    except ValueError as e:
+        print(f"Error: {str(e)}")
+
+
+@app.command()
+def list_cloudflare_models() -> None:
+    """
+    List available Cloudflare AI image generation models.
+    """
+    try:
+        cloudflare_ai = CloudflareAI()
+        models = cloudflare_ai.list_available_models()
+        print("Available Cloudflare AI Models:")
+        for alias, model_id in models.items():
+            print(f"  {alias}: {model_id}")
+    except ValueError as e:
+        print(f"Error: {str(e)}")
 
 
 if __name__ == "__main__":
