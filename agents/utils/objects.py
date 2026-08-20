@@ -226,3 +226,12 @@ class Article(BaseModel):
     urlToImage: Optional[str]
     publishedAt: Optional[str]
     content: Optional[str]
+
+
+class GeneratedImage(BaseModel):
+    success: bool
+    result: Optional[dict] = None
+    errors: Optional[list] = None
+    messages: Optional[list] = None
+    model: Optional[str] = None
+    prompt: Optional[str] = None
