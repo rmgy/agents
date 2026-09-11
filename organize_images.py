@@ -10,11 +10,25 @@ import sys
 from pathlib import Path
 
 # Configuration
-SOURCE_DIR = input("Enter source directory with generated images (or press Enter for current): ").strip()
-if not SOURCE_DIR:
-    SOURCE_DIR = "."
+if len(sys.argv) > 1:
+    SOURCE_DIR = sys.argv[1]
+else:
+    # Try common locations first
+    test_paths = [
+        "/home/user/agents/imageto video",
+        "./imageto video",
+        "/tmp/imageto video",
+        ".",
+    ]
+    SOURCE_DIR = None
+    for path in test_paths:
+        if Path(path).exists() and len(list(Path(path).glob("*.png"))) > 0:
+            SOURCE_DIR = path
+            break
+    if not SOURCE_DIR:
+        SOURCE_DIR = "."
 
-DEST_BASE = "/tmp/scarcity-trap-production/scenes"  # Change this path as needed
+DEST_BASE = "/home/user/agents/scenes"  # Change this path as needed
 
 # Asset mapping: prompt number -> (scene, category)
 ASSET_MAP = {

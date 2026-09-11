@@ -1,0 +1,73 @@
+SCARCITY TRAP - IMAGE ORGANIZATION SUMMARY
+============================================================
+
+Scene-01-Definition: 5 files
+  └─ backgrounds: 0 files
+  └─ characters: 2 files
+  └─ data-viz: 0 files
+  └─ motion-effects: 0 files
+  └─ objects: 1 files
+  └─ text: 2 files
+Scene-02-Limited-Resources: 5 files
+  └─ backgrounds: 1 files
+  └─ characters: 2 files
+  └─ data-viz: 0 files
+  └─ motion-effects: 0 files
+  └─ objects: 2 files
+  └─ text: 0 files
+Scene-03-Decision-Bandwidth: 2 files
+  └─ backgrounds: 0 files
+  └─ characters: 1 files
+  └─ data-viz: 1 files
+  └─ motion-effects: 0 files
+  └─ objects: 0 files
+  └─ text: 0 files
+Scene-04-Poor-Trap: 3 files
+  └─ backgrounds: 1 files
+  └─ characters: 1 files
+  └─ data-viz: 1 files
+  └─ motion-effects: 0 files
+  └─ objects: 0 files
+  └─ text: 0 files
+Scene-05-Cognitive-Capacity: 3 files
+  └─ backgrounds: 0 files
+  └─ characters: 2 files
+  └─ data-viz: 1 files
+  └─ motion-effects: 0 files
+  └─ objects: 0 files
+  └─ text: 0 files
+Scene-06-Quality-of-Life: 10 files
+  └─ backgrounds: 1 files
+  └─ characters: 1 files
+  └─ data-viz: 0 files
+  └─ motion-effects: 1 files
+  └─ objects: 6 files
+  └─ text: 1 files
+Scene-07-Scarcity-Mindset: 6 files
+  └─ backgrounds: 2 files
+  └─ characters: 2 files
+  └─ data-viz: 0 files
+  └─ motion-effects: 1 files
+  └─ objects: 0 files
+  └─ text: 1 files
+Scene-08-Poor-Decisions: 9 files
+  └─ backgrounds: 1 files
+  └─ characters: 1 files
+  └─ data-viz: 2 files
+  └─ motion-effects: 0 files
+  └─ objects: 3 files
+  └─ text: 2 files
+Scene-09-Consequences: 9 files
+  └─ backgrounds: 1 files
+  └─ characters: 1 files
+  └─ data-viz: 2 files
+  └─ motion-effects: 2 files
+  └─ objects: 2 files
+  └─ text: 1 files
+Scene-10-Path-Forward: 9 files
+  └─ backgrounds: 1 files
+  └─ characters: 1 files
+  └─ data-viz: 1 files
+  └─ motion-effects: 2 files
+  └─ objects: 3 files
+  └─ text: 1 files
