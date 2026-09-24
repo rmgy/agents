@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Core Idea Schema",
+  "description": "Structured deconstruction of a raw idea into its constituent components",
+  "required": ["raw_idea", "target_audience"],
+  "properties": {
+    "raw_idea": {
+      "type": "string",
+      "description": "The original unstructured idea or insight"
+    },
+    "target_audience": {
+      "type": "string",
+      "description": "Primary audience persona (e.g., 'Early-stage traders', 'First-time investors')"
+    },
+    "niche": {
+      "type": "string",
+      "description": "Market or industry (e.g., 'Personal finance', 'Behavioral psychology')"
+    },
+    "problem": {
+      "type": "string",
+      "description": "The problem statement or pain point the idea addresses"
+    },
+    "root_cause": {
+      "type": "string",
+      "description": "Why the problem exists; the underlying cause"
+    },
+    "contrarian_angle": {
+      "type": "string",
+      "description": "What conventional wisdom does this challenge?"
+    },
+    "psychological_mechanism": {
+      "type": "array",
+      "description": "Psychological or emotional drivers at play",
+      "items": {
+        "type": "string"
+      },
+      "examples": ["Loss aversion", "FOMO", "Sunk-cost fallacy"]
+    },
+    "core_insight": {
+      "type": "string",
+      "description": "The central 'aha' moment or key takeaway"
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Supporting examples, data, or research",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["anecdote", "statistic", "study", "historical", "case_study"]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "story": {
+      "type": "object",
+      "description": "Narrative illustration of the idea",
+      "properties": {
+        "character": {
+          "type": "string"
+        },
+        "situation": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
+        "consequence": {
+          "type": "string"
+        },
+        "lesson": {
+          "type": "string"
+        }
+      }
+    },
+    "framework": {
+      "type": "object",
+      "description": "A structured model or system",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flow": {
+          "type": "string"
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "description": "Key questions the idea raises",
+      "items": {
+        "type": "string"
+      }
+    },
+    "actionable_takeaways": {
+      "type": "array",
+      "description": "What should the audience do with this insight?",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "description": "SEO/topic keywords",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
