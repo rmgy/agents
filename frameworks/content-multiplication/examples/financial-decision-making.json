@@ -1,0 +1,482 @@
+{
+  "core_idea": {
+    "raw_idea": "People make bad financial decisions because emotions override their knowledge",
+    "target_audience": "Early-stage traders and emerging investors",
+    "niche": "Behavioral finance",
+    "problem": "Traders make financially harmful decisions despite having knowledge",
+    "root_cause": "Emotional reactions (fear, greed, loss aversion) override rational decision-making",
+    "contrarian_angle": "More financial education isn't the solution—better decision systems and emotional regulation are",
+    "psychological_mechanism": [
+      "Loss aversion",
+      "FOMO",
+      "Panic selling",
+      "Anchoring bias",
+      "Overconfidence"
+    ],
+    "core_insight": "Knowing what to do ≠ doing it. Emotions are more powerful than knowledge.",
+    "keywords": [
+      "emotional trading",
+      "behavioral finance",
+      "loss aversion",
+      "panic selling",
+      "trading psychology"
+    ]
+  },
+  "total_mutations_generated": 247,
+  "total_mutations_scored": 50,
+  "selected_mutations": [
+    {
+      "mutation_id": "mux_story_short_video_micro",
+      "rank": 1,
+      "production_sequence": 1,
+      "mutation_title": "She Lost ₹20L in 3 Emotional Decisions • Short Video (Micro)",
+      "angle_name": "Story-based: A specific trader's emotional decision breakdown",
+      "format_name": "Short Video",
+      "depth_name": "Micro (30 seconds)",
+      "hook": "She watched ₹10 lakh disappear in 3 emotional decisions.",
+      "hook_type": "story",
+      "title": "Trading Psychology Case Study: The ₹20L Mistake",
+      "platform_recommendations": [
+        "instagram",
+        "tiktok",
+        "youtube_shorts"
+      ],
+      "production_difficulty": 2,
+      "estimated_production_time": "4-6 hours",
+      "key_points": [
+        "Emotional reaction triggered by market event",
+        "Poor decision made despite having knowledge",
+        "Long-term consequence of one impulsive action"
+      ],
+      "audience_fit": "mixed",
+      "intent": "inspire",
+      "scores": {
+        "novelty": 7,
+        "relevance": 9,
+        "reach_potential": 8,
+        "production_difficulty": 2,
+        "business_value": 6,
+        "evergreen_score": 8,
+        "engagement_potential": 9
+      },
+      "overall_score": 7.8,
+      "priority": "critical",
+      "roi_efficiency": "3.9",
+      "recommended_priority_note": "Highest engagement potential + low production cost. Easy win for audience growth."
+    },
+    {
+      "mutation_id": "mux_contrarian_article_medium",
+      "rank": 2,
+      "production_sequence": 2,
+      "mutation_title": "Financial Education May Be Making You Worse at Money • Article (Medium)",
+      "angle_name": "Contrarian: Challenging the belief that more education solves financial problems",
+      "format_name": "Article",
+      "depth_name": "Medium (10 min read)",
+      "hook": "What if the biggest barrier to financial success isn't lack of knowledge?",
+      "hook_type": "contrarian",
+      "title": "Why Financial Education Isn't Enough: The Emotional Truth",
+      "platform_recommendations": [
+        "linkedin",
+        "blog",
+        "twitter"
+      ],
+      "production_difficulty": 3,
+      "estimated_production_time": "6-8 hours",
+      "key_points": [
+        "Knowledge gap vs execution gap",
+        "Why smart people still make dumb money decisions",
+        "What actually works instead of more studying"
+      ],
+      "audience_fit": "intermediate",
+      "intent": "persuade",
+      "scores": {
+        "novelty": 8,
+        "relevance": 8,
+        "reach_potential": 7,
+        "production_difficulty": 3,
+        "business_value": 7,
+        "evergreen_score": 9,
+        "engagement_potential": 7
+      },
+      "overall_score": 7.6,
+      "priority": "high",
+      "roi_efficiency": "2.5",
+      "recommended_priority_note": "Authority builder + SEO value + high novelty. Strong content for thought leadership."
+    },
+    {
+      "mutation_id": "mux_howto_checklist_micro",
+      "rank": 3,
+      "production_sequence": 3,
+      "mutation_title": "Before You Make Any Trading Decision: 5-Point Emotional Checklist • Checklist (Micro)",
+      "angle_name": "How-to: Practical framework to protect against emotional decisions",
+      "format_name": "Checklist",
+      "depth_name": "Micro (30 seconds to read)",
+      "hook": "Your biggest trading enemy isn't volatility. It's you.",
+      "hook_type": "emotional",
+      "title": "Emotional Trading Checklist: 5 Questions Before Every Decision",
+      "platform_recommendations": [
+        "email",
+        "pdf",
+        "blog"
+      ],
+      "production_difficulty": 1,
+      "estimated_production_time": "2-4 hours",
+      "key_points": [
+        "Pause mechanism before decisions",
+        "Emotional state check",
+        "Rational decision framework"
+      ],
+      "audience_fit": "beginner",
+      "intent": "educate",
+      "scores": {
+        "novelty": 6,
+        "relevance": 9,
+        "reach_potential": 6,
+        "production_difficulty": 1,
+        "business_value": 8,
+        "evergreen_score": 9,
+        "engagement_potential": 7
+      },
+      "overall_score": 7.5,
+      "priority": "high",
+      "roi_efficiency": "7.5",
+      "recommended_priority_note": "HIGHEST ROI. Trivial to produce, high business value (lead magnet/freebie), evergreen. Do this immediately."
+    },
+    {
+      "mutation_id": "mux_data_podcast_medium",
+      "rank": 4,
+      "production_sequence": 4,
+      "mutation_title": "What Major Market Crashes Reveal About Investor Behavior • Podcast (Medium)",
+      "angle_name": "Data-driven: Historical evidence of emotional decision patterns in crashes",
+      "format_name": "Podcast",
+      "depth_name": "Medium (10-15 min episode)",
+      "hook": "During the 2008 crash, one psychological pattern destroyed trillions in wealth.",
+      "hook_type": "data",
+      "title": "The Psychology Behind Every Market Crash: A Historical Analysis",
+      "platform_recommendations": [
+        "spotify",
+        "apple_podcasts",
+        "youtube"
+      ],
+      "production_difficulty": 3,
+      "estimated_production_time": "8-10 hours",
+      "key_points": [
+        "Pattern of panic selling across historical crashes",
+        "Investor behavior during 2008, 2020, 2022",
+        "Why the pattern repeats"
+      ],
+      "audience_fit": "intermediate",
+      "intent": "educate",
+      "scores": {
+        "novelty": 7,
+        "relevance": 7,
+        "reach_potential": 6,
+        "production_difficulty": 3,
+        "business_value": 6,
+        "evergreen_score": 9,
+        "engagement_potential": 6
+      },
+      "overall_score": 7.0,
+      "priority": "high",
+      "roi_efficiency": "2.3",
+      "recommended_priority_note": "Strong authority builder with evergreen value. Supports podcast channel growth."
+    },
+    {
+      "mutation_id": "mux_educational_carousel_short",
+      "rank": 5,
+      "production_sequence": 5,
+      "mutation_title": "5 Psychological Patterns That Make You Lose Money • Carousel (Short)",
+      "angle_name": "Educational: Teach specific psychological biases with recognition checklist",
+      "format_name": "Carousel",
+      "depth_name": "Short (5-8 slides)",
+      "hook": "You've probably lost money to one of these 5 mental patterns without realizing it.",
+      "hook_type": "pattern_interrupt",
+      "title": "5 Psychology Traps That Destroy Traders",
+      "platform_recommendations": [
+        "instagram",
+        "linkedin",
+        "facebook"
+      ],
+      "production_difficulty": 2,
+      "estimated_production_time": "4-5 hours",
+      "key_points": [
+        "Loss aversion bias",
+        "FOMO-driven decisions",
+        "Anchoring effect",
+        "Overconfidence",
+        "Sunk-cost fallacy"
+      ],
+      "audience_fit": "beginner",
+      "intent": "educate",
+      "scores": {
+        "novelty": 5,
+        "relevance": 8,
+        "reach_potential": 7,
+        "production_difficulty": 2,
+        "business_value": 5,
+        "evergreen_score": 8,
+        "engagement_potential": 7
+      },
+      "overall_score": 6.9,
+      "priority": "medium",
+      "roi_efficiency": "3.45",
+      "recommended_priority_note": "Highly shareable format + good engagement. Good for organic reach and audience growth."
+    },
+    {
+      "mutation_id": "mux_question_shortform_micro",
+      "rank": 6,
+      "production_sequence": 6,
+      "mutation_title": "Interactive Poll: What Would You Do in a 30% Market Crash? • Poll (Micro)",
+      "angle_name": "Interactive: Engage audience with real decision scenario",
+      "format_name": "Interactive Poll",
+      "depth_name": "Micro (5-10 seconds)",
+      "hook": "Your portfolio just dropped 30% overnight. What do you do? (Be honest)",
+      "hook_type": "question",
+      "title": "Market Crash Simulation Poll: What's Your Move?",
+      "platform_recommendations": [
+        "instagram_stories",
+        "twitter",
+        "linkedin"
+      ],
+      "production_difficulty": 1,
+      "estimated_production_time": "1-2 hours",
+      "key_points": [
+        "Self-assessment of emotional reactivity",
+        "Community participation",
+        "Setup for follow-up content"
+      ],
+      "audience_fit": "mixed",
+      "intent": "engage",
+      "scores": {
+        "novelty": 6,
+        "relevance": 8,
+        "reach_potential": 8,
+        "production_difficulty": 1,
+        "business_value": 4,
+        "evergreen_score": 7,
+        "engagement_potential": 9
+      },
+      "overall_score": 6.9,
+      "priority": "medium",
+      "roi_efficiency": "6.9",
+      "recommended_priority_note": "Extremely high engagement. Trivial to produce. Use for community building and insights."
+    },
+    {
+      "mutation_id": "mux_framework_infographic_short",
+      "rank": 7,
+      "production_sequence": 7,
+      "mutation_title": "The Emotion-to-Consequence Loop Framework • Infographic (Short)",
+      "angle_name": "Framework: Visual model of the decision-making breakdown",
+      "format_name": "Infographic",
+      "depth_name": "Short (1-page visual)",
+      "hook": "This is why you make the same financial mistakes over and over.",
+      "hook_type": "curiosity",
+      "title": "The Psychology Loop: How Emotions Drive Bad Financial Decisions",
+      "platform_recommendations": [
+        "instagram",
+        "pinterest",
+        "linkedin",
+        "blog"
+      ],
+      "production_difficulty": 3,
+      "estimated_production_time": "6-8 hours",
+      "key_points": [
+        "Emotional trigger",
+        "Unconscious impulse",
+        "Action taken",
+        "Consequence/regret",
+        "How to interrupt the loop"
+      ],
+      "audience_fit": "mixed",
+      "intent": "educate",
+      "scores": {
+        "novelty": 7,
+        "relevance": 8,
+        "reach_potential": 8,
+        "production_difficulty": 3,
+        "business_value": 5,
+        "evergreen_score": 9,
+        "engagement_potential": 8
+      },
+      "overall_score": 7.4,
+      "priority": "high",
+      "roi_efficiency": "2.5",
+      "recommended_priority_note": "Highly shareable visual + strong education value. Good for Pinterest traffic."
+    },
+    {
+      "mutation_id": "mux_myth_article_long",
+      "rank": 8,
+      "production_sequence": 8,
+      "mutation_title": "Myth vs Reality: \"Rational Investors Don't Feel Fear\" • Article (Long)",
+      "angle_name": "Myth-busting: Debunk the belief that rationality prevents emotional reactions",
+      "format_name": "Article",
+      "depth_name": "Long (2000+ word deep dive)",
+      "hook": "The best investors in the world still panic. Here's why that's actually good news.",
+      "hook_type": "contrarian",
+      "title": "The Myth of the Rational Investor: Why Emotions Are Inevitable",
+      "platform_recommendations": [
+        "blog",
+        "medium",
+        "linkedin"
+      ],
+      "production_difficulty": 4,
+      "estimated_production_time": "12-14 hours",
+      "key_points": [
+        "Definition of rationality vs emotion",
+        "Examples of 'rational' investors who panic-sold",
+        "Why emotion isn't a flaw, it's a feature",
+        "New framework for decision-making"
+      ],
+      "audience_fit": "advanced",
+      "intent": "persuade",
+      "scores": {
+        "novelty": 8,
+        "relevance": 7,
+        "reach_potential": 6,
+        "production_difficulty": 4,
+        "business_value": 7,
+        "evergreen_score": 10,
+        "engagement_potential": 6
+      },
+      "overall_score": 7.1,
+      "priority": "medium",
+      "roi_efficiency": "1.8",
+      "recommended_priority_note": "High effort, strong authority value. SEO long-tail potential. Save for after quick wins."
+    },
+    {
+      "mutation_id": "mux_system_guide_medium",
+      "rank": 9,
+      "production_sequence": 9,
+      "mutation_title": "Build Automated Decision Systems (So Emotions Can't Override) • Guide (Medium)",
+      "angle_name": "Solution-focused: Practical systems design for emotional protection",
+      "format_name": "Guide/Tutorial",
+      "depth_name": "Medium (10-15 min read)",
+      "hook": "Stop trying to have 'discipline.' Design a system that doesn't require it.",
+      "hook_type": "contrarian",
+      "title": "Building Your Trading Decision System: A Step-by-Step Framework",
+      "platform_recommendations": [
+        "blog",
+        "email_course",
+        "youtube"
+      ],
+      "production_difficulty": 3,
+      "estimated_production_time": "8-10 hours",
+      "key_points": [
+        "Pre-planned decision framework",
+        "Automated stop-losses and position sizing",
+        "Market scenario playbooks",
+        "Implementation checklist"
+      ],
+      "audience_fit": "intermediate",
+      "intent": "educate",
+      "scores": {
+        "novelty": 9,
+        "relevance": 9,
+        "reach_potential": 7,
+        "production_difficulty": 3,
+        "business_value": 8,
+        "evergreen_score": 9,
+        "engagement_potential": 7
+      },
+      "overall_score": 8.0,
+      "priority": "critical",
+      "roi_efficiency": "2.7",
+      "recommended_priority_note": "HIGHEST BUSINESS VALUE. Provides real solution. Strong lead magnet / premium content potential."
+    },
+    {
+      "mutation_id": "mux_debate_podcast_long",
+      "rank": 10,
+      "production_sequence": 10,
+      "mutation_title": "Debate: Is Financial Knowledge Overrated? • Podcast (Long)",
+      "angle_name": "Debate: Present opposing views on knowledge vs emotional discipline",
+      "format_name": "Podcast",
+      "depth_name": "Long (30-45 min)",
+      "hook": "Two experts disagree on whether financial education even matters.",
+      "hook_type": "pattern_interrupt",
+      "title": "Knowledge vs Discipline: Which Matters More in Trading?",
+      "platform_recommendations": [
+        "spotify",
+        "apple_podcasts",
+        "youtube"
+      ],
+      "production_difficulty": 4,
+      "estimated_production_time": "10-12 hours",
+      "key_points": [
+        "Thesis: Knowledge is necessary but insufficient",
+        "Counter-thesis: Emotional systems trump knowledge",
+        "Real-world examples from both sides",
+        "Integrated conclusion"
+      ],
+      "audience_fit": "advanced",
+      "intent": "engage",
+      "scores": {
+        "novelty": 8,
+        "relevance": 7,
+        "reach_potential": 7,
+        "production_difficulty": 4,
+        "business_value": 6,
+        "evergreen_score": 8,
+        "engagement_potential": 8
+      },
+      "overall_score": 7.3,
+      "priority": "medium",
+      "roi_efficiency": "1.8",
+      "recommended_priority_note": "Good for podcast episode. Thought-provoking. Requires guest/interview setup."
+    }
+  ],
+  "production_summary": {
+    "total_items": 10,
+    "estimated_total_hours": 65,
+    "average_score": 7.4,
+    "platform_distribution": {
+      "instagram": 5,
+      "youtube": 4,
+      "linkedin": 5,
+      "blog": 4,
+      "podcast": 3,
+      "email": 1,
+      "twitter": 2,
+      "tiktok": 2
+    },
+    "format_distribution": {
+      "Short Video": 1,
+      "Article": 2,
+      "Checklist": 1,
+      "Podcast": 2,
+      "Carousel": 1,
+      "Interactive": 1,
+      "Infographic": 1,
+      "Guide": 1
+    },
+    "angle_distribution": {
+      "Story-based": 1,
+      "Contrarian": 2,
+      "How-to": 1,
+      "Data-driven": 1,
+      "Educational": 1,
+      "Interactive": 1,
+      "Framework": 1,
+      "Myth-busting": 1,
+      "Solution-focused": 1
+    }
+  },
+  "production_roadmap": {
+    "phase_1_quick_wins": [
+      "Checklist (1-2 hrs)",
+      "Poll (1-2 hrs)",
+      "Short video (4-6 hrs)"
+    ],
+    "phase_1_time": "8-12 hours",
+    "phase_2_authority": [
+      "Contrarian article (6-8 hrs)",
+      "Infographic (6-8 hrs)"
+    ],
+    "phase_2_time": "12-16 hours",
+    "phase_3_depth": [
+      "System guide (8-10 hrs)",
+      "Podcast episodes (20-24 hrs)"
+    ],
+    "phase_3_time": "28-34 hours"
+  },
+  "generated_at": "2026-09-24T14:32:00Z"
+}

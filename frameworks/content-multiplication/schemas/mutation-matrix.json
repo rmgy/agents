@@ -1,0 +1,242 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Mutation Matrix Schema",
+  "description": "Configuration of all possible content mutations from a core idea",
+  "properties": {
+    "angles": {
+      "type": "array",
+      "description": "Editorial or presentational angles",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "hook_style": {
+            "type": "string"
+          }
+        }
+      },
+      "examples": [
+        {
+          "id": "educational",
+          "name": "Educational",
+          "description": "Explain why/how something works",
+          "hook_style": "curiosity"
+        },
+        {
+          "id": "contrarian",
+          "name": "Contrarian",
+          "description": "Challenge conventional wisdom",
+          "hook_style": "pattern_interrupt"
+        },
+        {
+          "id": "story",
+          "name": "Story-based",
+          "description": "Lead with narrative or case study",
+          "hook_style": "emotional"
+        }
+      ]
+    },
+    "formats": {
+      "type": "array",
+      "description": "Content delivery formats",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "category"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "video",
+              "carousel",
+              "article",
+              "podcast",
+              "interactive",
+              "utility",
+              "infographic",
+              "social"
+            ]
+          },
+          "typical_length": {
+            "type": "string"
+          },
+          "production_difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        }
+      }
+    },
+    "depths": {
+      "type": "array",
+      "description": "Content depth/duration options",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "typical_word_count": {
+            "type": "integer"
+          }
+        }
+      },
+      "examples": [
+        {
+          "id": "micro",
+          "name": "Micro",
+          "duration": "30 seconds",
+          "typical_word_count": 30
+        },
+        {
+          "id": "short",
+          "name": "Short",
+          "duration": "3 minutes",
+          "typical_word_count": 300
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "duration": "10 minutes",
+          "typical_word_count": 1000
+        },
+        {
+          "id": "long",
+          "name": "Long-form",
+          "duration": "30+ minutes",
+          "typical_word_count": 3000
+        }
+      ]
+    },
+    "audiences": {
+      "type": "array",
+      "description": "Audience expertise levels",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "characteristics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "intents": {
+      "type": "array",
+      "description": "What the content should accomplish",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "examples": [
+        {
+          "id": "educate",
+          "name": "Educate"
+        },
+        {
+          "id": "inspire",
+          "name": "Inspire"
+        },
+        {
+          "id": "persuade",
+          "name": "Persuade"
+        },
+        {
+          "id": "entertain",
+          "name": "Entertain"
+        }
+      ]
+    },
+    "platforms": {
+      "type": "array",
+      "description": "Distribution channels",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["video", "social", "written", "audio", "web"]
+          },
+          "best_formats": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "best_lengths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "audience_size": {
+            "type": "string",
+            "enum": ["nano", "micro", "macro", "mega"]
+          }
+        }
+      },
+      "examples": [
+        {
+          "id": "youtube",
+          "name": "YouTube",
+          "category": "video",
+          "best_formats": ["long_video", "short_video"],
+          "best_lengths": ["3min", "10min", "30min"],
+          "audience_size": "macro"
+        },
+        {
+          "id": "instagram",
+          "name": "Instagram",
+          "category": "social",
+          "best_formats": ["carousel", "reel", "story", "post"],
+          "best_lengths": ["micro", "short"],
+          "audience_size": "macro"
+        }
+      ]
+    }
+  }
+}

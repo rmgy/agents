@@ -1,0 +1,221 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Scored Mutation Schema",
+  "description": "A single content mutation with scores and metadata",
+  "required": ["mutation_id", "angle_id", "format_id", "depth_id", "title"],
+  "properties": {
+    "mutation_id": {
+      "type": "string",
+      "description": "Unique identifier (e.g., 'mux_001_educational_reel_short')"
+    },
+    "angle_id": {
+      "type": "string",
+      "description": "Reference to the angle used"
+    },
+    "angle_name": {
+      "type": "string"
+    },
+    "format_id": {
+      "type": "string",
+      "description": "Reference to the format"
+    },
+    "format_name": {
+      "type": "string"
+    },
+    "depth_id": {
+      "type": "string",
+      "description": "Reference to the depth/duration"
+    },
+    "depth_name": {
+      "type": "string"
+    },
+    "platform_recommendations": {
+      "type": "array",
+      "description": "Best platforms for this mutation",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform_id": {
+            "type": "string"
+          },
+          "platform_name": {
+            "type": "string"
+          },
+          "fit_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          }
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "description": "Working title for this mutation"
+    },
+    "hook": {
+      "type": "string",
+      "description": "The opening/hook for this piece"
+    },
+    "hook_type": {
+      "type": "string",
+      "enum": [
+        "curiosity",
+        "pattern_interrupt",
+        "problem_statement",
+        "question",
+        "data",
+        "contrarian",
+        "story",
+        "emotional",
+        "personal"
+      ]
+    },
+    "key_points": {
+      "type": "array",
+      "description": "Main messages or talking points",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cta": {
+      "type": "string",
+      "description": "Call-to-action (if applicable)"
+    },
+    "audience_fit": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "mixed"]
+    },
+    "intent": {
+      "type": "string",
+      "enum": ["educate", "inspire", "persuade", "entertain"]
+    },
+    "visual_concept": {
+      "type": "string",
+      "description": "Visual direction or aesthetic (if applicable)"
+    },
+    "production_notes": {
+      "type": "string",
+      "description": "Special requirements or considerations"
+    },
+    "scores": {
+      "type": "object",
+      "description": "Individual scoring dimensions",
+      "properties": {
+        "novelty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "How fresh/unique vs existing content"
+        },
+        "relevance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Audience alignment"
+        },
+        "reach_potential": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Platform fit + shareability"
+        },
+        "production_difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "1=trivial, 5=highly complex"
+        },
+        "business_value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Lead gen + traffic + authority + conversion"
+        },
+        "evergreen_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Long-term validity"
+        },
+        "engagement_potential": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Hook strength + format engagement"
+        }
+      },
+      "required": [
+        "novelty",
+        "relevance",
+        "reach_potential",
+        "production_difficulty",
+        "business_value",
+        "evergreen_score",
+        "engagement_potential"
+      ]
+    },
+    "overall_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Weighted composite score"
+    },
+    "score_breakdown": {
+      "type": "object",
+      "description": "Scoring formula weights used",
+      "properties": {
+        "novelty_weight": {
+          "type": "number"
+        },
+        "relevance_weight": {
+          "type": "number"
+        },
+        "reach_weight": {
+          "type": "number"
+        },
+        "business_value_weight": {
+          "type": "number"
+        },
+        "evergreen_weight": {
+          "type": "number"
+        },
+        "engagement_weight": {
+          "type": "number"
+        },
+        "difficulty_penalty": {
+          "type": "number"
+        }
+      }
+    },
+    "rank": {
+      "type": "integer",
+      "description": "Rank within the full mutation portfolio (lower = higher priority)"
+    },
+    "recommended_priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "Production priority recommendation"
+    },
+    "estimated_production_time": {
+      "type": "string",
+      "description": "Rough estimate (e.g., '2 hours', '1 day')"
+    },
+    "roi_efficiency": {
+      "type": "string",
+      "description": "Score/difficulty ratio (high efficiency = better ROI)"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Metadata tags for filtering/organization",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
