@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storyboard Dashboard: Why Déjà Vu Feels So Real</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 3px solid #4a1a6f;
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #e8e8e8;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(74, 26, 111, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #b0a8d8;
+            margin-bottom: 20px;
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .color-swatch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-name {
+            font-size: 0.85em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .color-hex {
+            font-size: 0.75em;
+            color: #a0a0a0;
+            font-family: 'Courier New', monospace;
+        }
+
+        section {
+            margin-bottom: 50px;
+            background: rgba(15, 20, 40, 0.6);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #4a1a6f;
+        }
+
+        section h2 {
+            font-size: 2em;
+            color: #e8e8e8;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .act-marker {
+            display: inline-block;
+            background: #4a1a6f;
+            color: #e8e8e8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(30, 35, 65, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(90, 110, 143, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #4a1a6f;
+            box-shadow: 0 0 20px rgba(74, 26, 111, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #e8e8e8;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .card p {
+            color: #c0b8d8;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+        }
+
+        .copy-button {
+            background: #4a1a6f;
+            color: #e8e8e8;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .copy-button:hover {
+            background: #6a2a9f;
+            box-shadow: 0 4px 12px rgba(74, 26, 111, 0.4);
+        }
+
+        .vo-segment {
+            background: rgba(74, 26, 111, 0.2);
+            padding: 15px;
+            border-left: 3px solid #e8e8e8;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .timecode {
+            color: #e8e8e8;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 8px;
+        }
+
+        .script {
+            color: #c0b8d8;
+            font-style: italic;
+        }
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .checklist-item {
+            background: rgba(90, 110, 143, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #e8e8e8;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            color: #c0b8d8;
+        }
+
+        .duration {
+            color: #a0a0a0;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+
+        .narrative-note {
+            background: rgba(212, 165, 116, 0.1);
+            padding: 15px;
+            border-left: 3px solid #d4a574;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #d4a574;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Why Déjà Vu Feels So Real</h1>
+            <p class="subtitle">Meaning Channel • 9:16 Vertical Short • 1080×1920px • 30 FPS • ~115 seconds</p>
+
+            <div class="narrative-note">
+                <strong>Core Narrative:</strong> A moment of disorienting familiarity triggers exploration of memory systems, pattern recognition glitches, and the profound question: Are we remembering the future, or just witnessing our brain's extraordinary ability to recognize patterns? By the end, déjà vu becomes a window into consciousness itself.
+            </div>
+
+            <div class="color-palette">
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #0a0e27;"></div>
+                    <div class="color-name">Deep Midnight</div>
+                    <div class="color-hex">#0a0e27</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #e8e8e8;"></div>
+                    <div class="color-name">Silver White</div>
+                    <div class="color-hex">#e8e8e8</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #4a1a6f;"></div>
+                    <div class="color-name">Deep Plum</div>
+                    <div class="color-hex">#4a1a6f</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #5a6e8f;"></div>
+                    <div class="color-name">Slate Gray</div>
+                    <div class="color-hex">#5a6e8f</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ACT 1: EXPERIENCE -->
+        <section>
+            <h2>Act 1: Experience</h2>
+            <div class="act-marker">The Disorienting Moment</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Image 1: Entering a Familiar Space</h3>
+                    <p>A person walks through a café entrance, but everything feels subtly off—recognizable yet impossible. Interior is dimly lit with plum-tinted shadows, silverware gleaming on tables. Person's face shows the beginning of confusion. Storybook illustration style, soft focus, slight shimmer effect around edges.</p>
+                    <button class="copy-button" onclick="copyText('A person walks through a café entrance, everything feels subtly off—recognizable yet impossible. Interior is dimly lit with plum-tinted shadows, silverware gleaming on tables. Person\'s face shows the beginning of confusion. Storybook illustration style, soft focus, slight shimmer effect around edges. Color palette: Deep Midnight (#0a0e27), Silver White (#e8e8e8), Deep Plum (#4a1a6f). Lighting: Low-key with ethereal silver accents.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 2: Recognition Flash</h3>
+                    <p>Close-up of eyes widening with a flash of recognition. Golden-hour light catches the iris. Background is slightly blurred and dreamlike. Expression captures that eerie moment of "I've been here before." Soft storybook aesthetic with ethereal glow.</p>
+                    <button class="copy-button" onclick="copyText('Close-up of eyes widening with a flash of recognition. Golden-hour light catches the iris. Background is slightly blurred and dreamlike. Expression captures that eerie moment of \"I\'ve been here before.\" Soft storybook aesthetic with ethereal glow. Color palette: Deep Plum (#4a1a6f) background, Silver White (#e8e8e8) highlights, warm accents. Lighting: Golden rim light with soft shadows.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 3: Overlapping Realities</h3>
+                    <p>The same café space shown twice simultaneously—one present, one ghostly and translucent in background. They're perfectly aligned but subtly different. Creates visual sensation of two moments occupying same space. Plum and silver color scheme with translucency effect.</p>
+                    <button class="copy-button" onclick="copyText('The same café space shown twice simultaneously—one present, one ghostly and translucent in background. They\'re perfectly aligned but subtly different. Creates visual sensation of two moments occupying same space. Plum and silver color scheme with translucency effect. Storybook illustration, dreamy quality. Lighting: Even illumination with spectral overlay on background layer.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 4: Memory Fragments</h3>
+                    <p>Surreal image: floating memory snippets around the person—a clock face, a conversation, a texture—none of which consciously happened. Sketchy, dreamlike quality. Plum-tinted memories with silver highlights. Shows the disorientation of partial recognition.</p>
+                    <button class="copy-button" onclick="copyText('Surreal image: floating memory snippets around the person—a clock face, a conversation, a texture—none of which consciously happened. Sketchy, dreamlike quality. Plum-tinted memories with silver highlights. Shows the disorientation of partial recognition. Storybook style with ethereal floating elements. Lighting: Soft diffused with memory objects glowing softly.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 5: The Uncanny Valley</h3>
+                    <p>Wide shot of the café—everything is almost exactly right, but something is deeply wrong. A chair is in the wrong place, a picture hangs differently, the light is at the wrong angle. Subtle wrongness creates psychological tension. Storybook illustration with muted deep midnight and plum tones.</p>
+                    <button class="copy-button" onclick="copyText('Wide shot of the café—everything is almost exactly right, but something is deeply wrong. A chair is in the wrong place, a picture hangs differently, the light is at the wrong angle. Subtle wrongness creates psychological tension. Storybook illustration with muted deep midnight and plum tones. Color palette: #0a0e27, #4a1a6f. Lighting: Slightly off-angle, creating unease.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 6: Internal Dissonance</h3>
+                    <p>Split-screen or double-exposure showing person's face on left (confident, present moment) and right (confused, searching). Represents the conflict between conscious experience and unconscious memory. Soft storybook aesthetic with plum-silver contrast.</p>
+                    <button class="copy-button" onclick="copyText('Split-screen or double-exposure showing person\'s face on left (confident, present moment) and right (confused, searching). Represents conflict between conscious experience and unconscious memory. Soft storybook aesthetic with plum-silver contrast. Color palette: #0a0e27 background, #e8e8e8 and #4a1a6f for split. Lighting: Mirror lighting on both sides.')">Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 2: SCIENCE -->
+        <section>
+            <h2>Act 2: Science</h2>
+            <div class="act-marker">How Your Brain Misfires</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Image 7: Memory System Visualization</h3>
+                    <p>Abstract representation of the brain's memory systems—hippocampus, prefrontal cortex, temporal lobe—shown as interconnected glowing nodes. Pathways light up with silver-white electrical impulses. Deep midnight background. Medical-accurate but stylized storybook illustration.</p>
+                    <button class="copy-button" onclick="copyText('Abstract representation of brain\'s memory systems—hippocampus, prefrontal cortex, temporal lobe—shown as interconnected glowing nodes. Pathways light up with silver-white electrical impulses. Deep midnight background. Medical-accurate but stylized storybook illustration. Color palette: #0a0e27, #e8e8e8, #5a6e8f. Lighting: Neon-like glow on neural pathways.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 8: Pattern Recognition Network</h3>
+                    <p>Visual representation of pattern recognition—the brain matching current experience against stored memories. Shown as overlapping geometric patterns, some matching perfectly, others slightly off. Plum and silver color scheme. Creates sense of computational matching process.</p>
+                    <button class="copy-button" onclick="copyText('Visual representation of pattern recognition—brain matching current experience against stored memories. Overlapping geometric patterns, some matching perfectly, others slightly off. Plum and silver color scheme. Creates sense of computational matching. Storybook style geometric abstraction. Lighting: Highlights on matching patterns, shadows on misalignments.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 9: The Dual Process</h3>
+                    <p>Two simultaneous neurological pathways shown—one explicit (conscious memory systems lighting up in silver), one implicit (unconscious familiarity systems in plum). They activate in different order, creating the déjà vu sensation. Storybook illustration of neural complexity.</p>
+                    <button class="copy-button" onclick="copyText('Two simultaneous neurological pathways—one explicit (conscious memory, silver), one implicit (unconscious familiarity, plum). They activate in different order, creating déjà vu sensation. Storybook illustration of neural complexity. Color palette: #e8e8e8 vs #4a1a6f. Lighting: Sequential illumination showing timing mismatch.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 10: False Retrieval Cue</h3>
+                    <p>A sensory element (maybe a smell, sound, texture) shown radiating from an object, triggering memory cascade. The cue is too generic—a coffee aroma, ambient sound—that matches multiple memories simultaneously. Storybook illustration with emanating light rays in silver.</p>
+                    <button class="copy-button" onclick="copyText('A sensory element (coffee aroma, ambient sound, texture) radiating from an object, triggering memory cascade. The cue is too generic—matching multiple memories simultaneously. Storybook illustration with emanating light rays in silver. Color palette: #0a0e27, #e8e8e8, #4a1a6f. Lighting: Radiating sensory waves in silver-white.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 11: The Misfiring Synapse</h3>
+                    <p>Close-up of a synapse making a mistaken connection—two neurons' ends almost touching but connecting across a slightly wrong gap. Represents the neural error that creates déjà vu. Silver electrical energy at the connection point. Storybook medical illustration.</p>
+                    <button class="copy-button" onclick="copyText('Close-up of a synapse making a mistaken connection—two neurons almost touching but connecting across a slightly wrong gap. Represents the neural error creating déjà vu. Silver electrical energy at connection point. Storybook medical illustration. Color palette: #0a0e27 background, #e8e8e8 and #4a1a6f neurons. Lighting: Bright synaptic energy.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 12: The Prediction Engine</h3>
+                    <p>Visual metaphor of the brain as a prediction machine—showing present moment at bottom, possible futures blooming upward like flowers or neural branches. Current moment inexplicably matches one future prediction. Storybook aesthetic with plum-silver pathways.</p>
+                    <button class="copy-button" onclick="copyText('Visual metaphor of brain as prediction machine—present moment at bottom, possible futures blooming upward like flowers. Current moment inexplicably matches one future prediction. Storybook aesthetic with plum-silver pathways. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Golden future predictions, silver present moment.')">Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 3: SYMBOLISM -->
+        <section>
+            <h2>Act 3: Symbolism</h2>
+            <div class="act-marker">The Deeper Meaning</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Image 13: The Eternal Return</h3>
+                    <p>Cyclical imagery—spirals, circular patterns, a figure standing at multiple points in the same spiral. References Nietzsche's eternal return and the idea that déjà vu touches something timeless. Storybook illustration with mandala-like quality. Plum and silver.</p>
+                    <button class="copy-button" onclick="copyText('Cyclical imagery—spirals, circular patterns, a figure at multiple points in the same spiral. References eternal return and timeless quality of déjà vu. Storybook illustration with mandala-like quality. Plum and silver. Color palette: #4a1a6f, #e8e8e8, #0a0e27. Lighting: Glow emanating from spiral center.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 14: Recognition of Destiny</h3>
+                    <p>A figure standing at a crossroads or threshold, with a ghostly vision of themselves having made this exact choice before. Suggests déjà vu as glimpse of predetermined path. Storybook illustration with double-exposure effect. Ethereal quality.</p>
+                    <button class="copy-button" onclick="copyText('A figure at a crossroads, with ghostly vision of themselves having made this choice before. Suggests déjà vu as glimpse of predetermined path. Storybook double-exposure. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Ethereal glow on vision, natural light on present figure.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 15: The Veil Between Worlds</h3>
+                    <p>Translucent veil or curtain separating two scenes—one conscious, one from past life or collective unconscious. Déjà vu as momentary thinning of the veil. Storybook illustration with gauzy textures and mystical quality. Plum atmospheric fog.</p>
+                    <button class="copy-button" onclick="copyText('Translucent veil separating two scenes—conscious moment and past/collective memory. Déjà vu as momentary thinning of veil. Storybook illustration with gauzy textures, mystical quality. Plum atmospheric fog. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Diffused light through veil.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 16: The Witness Self</h3>
+                    <p>A figure observing themselves from outside—spiritual concept of witnessing consciousness. Déjà vu as moment when observer-self briefly becomes aware of experienced-self. Storybook illustration with multiple layers of awareness. Ethereal and contemplative.</p>
+                    <button class="copy-button" onclick="copyText('A figure observing themselves from outside—spiritual concept of witnessing consciousness. Déjà vu as moment when observer-self becomes aware of experienced-self. Storybook illustration with multiple awareness layers. Ethereal and contemplative. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Soft gold on observer, silver on experienced self.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 17: Synchronicity and Meaning</h3>
+                    <p>Abstract visualization of Jung's synchronicity concept—seemingly random events aligning in meaningful patterns. A figure at center with connections spreading outward to multiple moments. Suggests déjà vu reveals hidden connections. Storybook geometric-organic hybrid.</p>
+                    <button class="copy-button" onclick="copyText('Abstract visualization of Jung\'s synchronicity—seemingly random events aligning meaningfully. Figure at center with connections spreading outward. Suggests déjà vu reveals hidden connections. Storybook geometric-organic hybrid. Color palette: #4a1a6f connections, #e8e8e8 nodes, #0a0e27 background. Lighting: Glowing connection points.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 18: The Cosmic Mirror</h3>
+                    <p>Image of a mirror reflecting a scene, but the reflection doesn't match—showing the uncanny quality of déjà vu as seeing reality and reflection simultaneously. Storybook illustration with mirror imagery. Deep midnight and silver tones create visual poetry.</p>
+                    <button class="copy-button" onclick="copyText('Image of a mirror reflecting a scene, but reflection doesn\'t match—uncanny quality of déjà vu. Reality and reflection simultaneously visible. Storybook illustration with mirror imagery. Deep midnight and silver tones. Color palette: #0a0e27, #e8e8e8, #4a1a6f. Lighting: Asymmetric lighting on reality vs reflection.')">Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 4: REFLECTION -->
+        <section>
+            <h2>Act 4: Reflection</h2>
+            <div class="act-marker">What This Tells Us</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Image 19: The Observer Effect</h3>
+                    <p>Figure standing in quiet moment, with subtle light emanating from within. Represents consciousness observing itself. Déjà vu as evidence that awareness is fundamentally mysterious. Contemplative storybook illustration with introspective quality.</p>
+                    <button class="copy-button" onclick="copyText('Figure in quiet moment with subtle light emanating from within. Represents consciousness observing itself. Déjà vu as evidence of fundamental mystery. Contemplative storybook illustration with introspective quality. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Soft internal glow, minimal external light.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 20: Memory as Living Thing</h3>
+                    <p>Metaphorical image of memory as a living organism—perhaps tree roots, neural networks visible as organic matter, memory as something alive and dynamic. Déjà vu as memory "breathing" or "moving." Storybook illustration with bioluminescent quality.</p>
+                    <button class="copy-button" onclick="copyText('Metaphorical image of memory as living organism—tree roots, neural networks as organic matter. Memory as something alive and dynamic. Déjà vu as memory \"breathing.\" Storybook illustration with bioluminescent quality. Color palette: #4a1a6f organic forms, #e8e8e8 bioluminescence, #0a0e27 background. Lighting: Glowing life force.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 21: The Present Moment</h3>
+                    <p>Simple, powerful image: a person fully present in a moment, aware of themselves experiencing it. Represents the paradox déjà vu reveals—we are always both living and observing our lives simultaneously. Storybook illustration with grounded, peaceful quality.</p>
+                    <button class="copy-button" onclick="copyText('Simple, powerful image: person fully present in moment, aware of themselves experiencing it. Represents paradox déjà vu reveals. Storybook illustration with grounded, peaceful quality. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Natural, present-moment lighting, neither past nor future.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 22: The Question Remains</h3>
+                    <p>Figure in silhouette asking a question (hands up, open posture) with a question mark or cosmic symbol above. Represents the ultimate unknowability of consciousness. Even knowing the neuroscience, déjà vu remains miraculous. Storybook illustration.</p>
+                    <button class="copy-button" onclick="copyText('Figure in silhouette asking a question (hands up, open posture) with question mark/cosmic symbol above. Represents unknowability of consciousness. Even knowing neuroscience, déjà vu remains miraculous. Storybook illustration. Color palette: #0a0e27, #4a1a6f, #e8e8e8. Lighting: Cosmic light from above.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 23: The Pattern Everywhere</h3>
+                    <p>Wide shot showing patterns repeating everywhere—in nature (fractals, spirals in plants), in architecture, in human behavior. Suggests the universe itself operates on pattern and recursion. Déjà vu as tuning into this fundamental rhythm. Storybook illustration.</p>
+                    <button class="copy-button" onclick="copyText('Wide shot showing patterns repeating everywhere—fractals, spirals, architecture, human behavior. Universe operates on pattern and recursion. Déjà vu as tuning into this rhythm. Storybook illustration. Color palette: #4a1a6f patterns, #e8e8e8 highlights, #0a0e27 background. Lighting: Pattern-revealing light.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 24: Integration</h3>
+                    <p>Figure with all previous visual elements integrated—memory, neural patterns, symbolic meaning, present awareness—all contained within or surrounding them. Represents wholeness achieved through understanding. Storybook illustration with mandala-like integration.</p>
+                    <button class="copy-button" onclick="copyText('Figure with all previous elements integrated—memory, neural patterns, symbolism, awareness—all contained within or surrounding them. Represents wholeness through understanding. Storybook illustration with mandala-like integration. Color palette: All four colors (#0a0e27, #e8e8e8, #4a1a6f, #5a6e8f). Lighting: Balanced illumination from all directions.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 25: The Glimpse</h3>
+                    <p>Moment of beauty—perhaps sunrise, a profound moment in nature—shown through a window or frame. Represents déjà vu as a glimpse of something beautiful and true. Reminder that mystery and meaning coexist. Storybook illustration with transcendent quality.</p>
+                    <button class="copy-button" onclick="copyText('Moment of beauty—perhaps sunrise or profound moment in nature—shown through a window. Déjà vu as glimpse of something beautiful and true. Reminder that mystery and meaning coexist. Storybook illustration with transcendent quality. Color palette: #4a1a6f, #e8e8e8, #0a0e27. Lighting: Golden light through window.')">Copy</button>
+                </div>
+
+                <div class="card">
+                    <h3>Image 26: Open Horizon</h3>
+                    <p>Final image: a figure looking toward an open horizon—past, memory, present, future all dissolving into infinite potential. Represents the ultimate lesson: consciousness itself is the eternal mystery. Storybook illustration with hopeful, expansive quality. Dissolves into light.</p>
+                    <button class="copy-button" onclick="copyText('Figure looking toward open horizon—past, memory, present, future dissolving into infinite potential. Consciousness as eternal mystery. Storybook illustration with hopeful, expansive quality. Dissolves into light. Color palette: #0a0e27, #4a1a6f, #e8e8e8, gradual lightening. Lighting: Sunset/infinite light.')">Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERO VIDEOS -->
+        <section>
+            <h2>Hero Videos</h2>
+            <div class="act-marker">Motion Sequences (7 total, ~2-3 seconds each)</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Video 1: Disorientation Spin</h3>
+                    <p>Camera slowly rotates around a figure in a space, but space subtly shifts each rotation. Dizzy, disorienting effect. Movement creates sensation of reality warping. Use deep midnight background with plum accents. 2-3 seconds of continuous rotation.</p>
+                    <button class="copy-button" onclick="copyText('Camera slowly rotates around figure in space, but space subtly shifts each rotation. Dizzy, disorienting effect. Reality warping sensation. Deep midnight background with plum accents. 2-3 seconds of continuous rotation. Runway/Adobe prompt: \"smooth 360° camera pan around figure, environment subtly shifting, disorientation effect, storybook style, color palette #0a0e27, #4a1a6f.\"')">Copy</button>
+                    <div class="duration">Duration: 2-3 seconds</div>
+                </div>
+
+                <div class="card">
+                    <h3>Video 2: Memory Cascade</h3>
+                    <p>Fragmented memory snippets (objects, faces, moments) rapidly flash across screen in sequence, overlapping and cascading like dominoes falling. Represents memory retrieval triggered by single cue. Silver and plum colors. Accelerating tempo. 2-3 seconds.</p>
+                    <button class="copy-button" onclick="copyText('Fragmented memory snippets rapidly flash and cascade across screen like dominoes falling. Objects, faces, moments overlap. Memory retrieval triggered by single cue. Silver and plum colors. Accelerating tempo. 2-3 seconds. Runway/Adobe: \"cascading memory fragments, overlapping objects and faces, dominoes effect, accelerating tempo, storybook, colors #e8e8e8 #4a1a6f.\"')">Copy</button>
+                    <div class="duration">Duration: 2-3 seconds</div>
+                </div>
+
+                <div class="card">
+                    <h3>Video 3: Neural Firing Sequence</h3>
+                    <p>Stylized visualization of neurons firing—nodes lighting up in sequence along neural pathways. Electricity travels through the network. Shows the biological process underlying déjà vu. Silver and slate pathways. Clean, medical but still storybook aesthetic. 2-3 seconds.</p>
+                    <button class="copy-button" onclick="copyText('Stylized neurons firing—nodes lighting up in sequence along pathways. Electricity travels through network. Biological process underlying déjà vu. Silver and slate pathways. Medical but storybook aesthetic. 2-3 seconds. Runway/Adobe: \"neurons firing in sequence, electrical impulses traveling paths, nodes lighting, storybook medical visualization, colors #e8e8e8 #5a6e8f on #0a0e27.\"')">Copy</button>
+                    <div class="duration">Duration: 2-3 seconds</div>
+                </div>
+
+                <div class="card">
+                    <h3>Video 4: Dual Pathways Diverge and Converge</h3>
+                    <p>Two light paths split from a single source, one explicit/silver, one implicit/plum. They take different routes through the brain but inexplicably arrive at same destination simultaneously. Creates visual representation of the déjà vu mechanism. 2-3 seconds of smooth motion.</p>
+                    <button class="copy-button" onclick="copyText('Two light paths split from single source—one explicit (silver), one implicit (plum). Take different routes but arrive at same destination simultaneously. Visual representation of déjà vu mechanism. 2-3 seconds smooth motion. Runway/Adobe: \"dual light pathways diverging then converging, explicit and implicit routes, simultaneous arrival, storybook, colors #e8e8e8 #4a1a6f.\"')">Copy</button>
+                    <div class="duration">Duration: 2-3 seconds</div>
+                </div>
+
+                <div class="card">
+                    <h3>Video 5: Veil Thinning</h3>
+                    <p>Translucent veil or curtain slowly becomes transparent, revealing the same scene on both sides of the veil (past and present overlapping). The veil dissolves completely, then re-solidifies. Represents the thinning and thickening of separation between conscious and unconscious. 2-3 seconds.</p>
+                    <button class="copy-button" onclick="copyText('Translucent veil slowly becomes transparent, revealing overlapping scenes. Veil dissolves, then re-solidifies. Thinning of separation between conscious and unconscious. Storybook mystical quality. 2-3 seconds. Runway/Adobe: \"veil becoming transparent and dissolving, revealing overlapping scenes, mystical quality, plum and silver, storybook aesthetic.\"')">Copy</button>
+                    <div class="duration">Duration: 2-3 seconds</div>
+                </div>
+
+                <div class="card">
+                    <h3>Video 6: Spiral of Recognition</h3>
+                    <p>Camera pulls back to reveal a spiral pattern—or spirals within spirals—with a figure positioned at multiple points simultaneously. The spiral rotates slowly, creating a hypnotic eternal-return effect. Represents cyclical nature of recurring patterns in consciousness. 2-3 seconds.</p>
+                    <button class="copy-button" onclick="copyText('Camera pulls back revealing spiral pattern with figure at multiple points simultaneously. Spiral rotates slowly, hypnotic eternal-return effect. Cyclical nature of recurring patterns. Plum and silver colors. 2-3 seconds. Runway/Adobe: \"spiraling camera pullback revealing fractal spirals, figure at multiple points, rotating spiral, eternal return effect, storybook, colors #4a1a6f #e8e8e8.\"')">Copy</button>
+                    <div class="duration">Duration: 2-3 seconds</div>
+                </div>
+
+                <div class="card">
+                    <h3>Video 7: Return to Presence</h3>
+                    <p>Camera zooms in from cosmic/abstract space, through layers of meaning (symbolic, scientific, emotional), back to a single moment of clear presence. A figure stands grounded and present. The déjà vu moment fully integrated into present awareness. Resolution. 3 seconds.</p>
+                    <button class="copy-button" onclick="copyText('Camera zooms in from cosmic/abstract space through layers (symbolic, scientific, emotional) back to single moment of clear presence. Figure stands grounded. Déjà vu fully integrated into present awareness. 3 seconds. Runway/Adobe: \"zoom from cosmic abstract through layers to grounded present moment, integration of meaning, peaceful resolution, storybook, colors gradual #0a0e27 to #e8e8e8.\"')">Copy</button>
+                    <div class="duration">Duration: 3 seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOICEOVER SCRIPT -->
+        <section>
+            <h2>Voiceover Script</h2>
+            <div class="act-marker">21 Segments • Total Duration: ~1:55 • Timecodes at 30 FPS</div>
+
+            <div class="narrative-note">
+                <strong>Voice Direction:</strong> Contemplative, slightly mysterious, introspective. Pace is measured and thoughtful. Occasional wonder mixed with scientific authority. The voice should feel like it's inviting the viewer into a profound realization. Whispered moments for maximum intimacy; bigger delivery for revelatory moments.
+            </div>
+
+            <div>
+                <div class="vo-segment">
+                    <div class="timecode">0:00 - 0:04 (Segment 1)</div>
+                    <div class="script">"You're in a familiar place for the first time. This café. This corner. This exact moment... feels like you've lived it before."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:04 - 0:09 (Segment 2)</div>
+                    <div class="script">"Your eyes widen. Your gut tightens. You try to remember when. But you can't. There's no memory to grasp. Just... recognition. Impossible recognition."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:09 - 0:14 (Segment 3)</div>
+                    <div class="script">"This is déjà vu. That eerie sensation of familiarity with no logical reason. And it's more common than you think—75 percent of people experience it."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:14 - 0:20 (Segment 4)</div>
+                    <div class="script">"For centuries, we dismissed it as the paranormal. A glimpse of a past life. A slip in the fabric of time. But neuroscience reveals something far more extraordinary: your brain is about to show you how consciousness actually works."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:20 - 0:26 (Segment 5)</div>
+                    <div class="script">"Your memory isn't a recording device. It's a pattern-recognition system. Every moment, your brain is comparing what you're experiencing right now against everything you've ever encountered."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:26 - 0:32 (Segment 6)</div>
+                    <div class="script">"Usually, this happens perfectly. You recognize your mother's face instantly. You know your home. But sometimes, your brain's pattern-matching system makes a mistake."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:32 - 0:38 (Segment 7)</div>
+                    <div class="script">"A generic sensory cue—maybe it's the smell of coffee, the angle of light, the sound of conversation—matches too many memories at once. Your brain floods with familiarity without knowing why."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:38 - 0:44 (Segment 8)</div>
+                    <div class="script">"But here's where it gets strange. There are actually two memory systems fighting for control. One is explicit—conscious, deliberate, what you can describe. The other is implicit—automatic, unconscious, what your body just knows."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:44 - 0:50 (Segment 9)</div>
+                    <div class="script">"Normally, they activate in perfect sequence. But during déjà vu, they fire out of order. Your implicit system recognizes something before your explicit system can find the memory. Your gut knows before your mind understands."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:50 - 0:56 (Segment 10)</div>
+                    <div class="script">"It's like your brain is predicting the future. Like you're living a moment and remembering it simultaneously. Your consciousness is briefly aware of its own machinery."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">0:56 - 1:02 (Segment 11)</div>
+                    <div class="script">"But déjà vu reveals something deeper than neuroscience. For millennia, cultures have interpreted this phenomenon as glimpses beyond the veil."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:02 - 1:08 (Segment 12)</div>
+                    <div class="script">"What if déjà vu is the moment when you remember something you haven't experienced yet? A glimpse of fate. A window into the eternal recurrence—that the universe itself is a pattern endlessly repeating."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:08 - 1:14 (Segment 13)</div>
+                    <div class="script">"Maybe Nietzsche was right. Maybe we don't move forward through time. Maybe we're living the same eternal moment, and consciousness is gradually waking up to it."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:14 - 1:20 (Segment 14)</div>
+                    <div class="script">"Or maybe déjà vu reveals something even stranger: that there are no coincidences. Only a universe of perfect patterns. And you, observing yourself living."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:20 - 1:26 (Segment 15)</div>
+                    <div class="script">"Because here's what neuroscience and mysticism both agree on: you are never just living. You're simultaneously experiencing and witnessing. You're the actor and the audience."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:26 - 1:32 (Segment 16)</div>
+                    <div class="script">"Déjà vu is that gap between the two. The moment when the witness becomes aware of itself. When consciousness recognizes itself."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:32 - 1:38 (Segment 17)</div>
+                    <div class="script">"So the next time you experience that uncanny feeling of familiarity... of being in two moments at once... you're not experiencing a glitch."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:38 - 1:44 (Segment 18)</div>
+                    <div class="script">"You're experiencing the universe becoming aware of itself through you. A brief moment of clarity in the eternal pattern."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:44 - 1:50 (Segment 19)</div>
+                    <div class="script">"Memory isn't about the past. It's about meaning. And déjà vu? It's a reminder that your consciousness is far stranger, far deeper than you've been taught."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:50 - 1:55 (Segment 20)</div>
+                    <div class="script">"You are the universe experiencing itself. And sometimes... just sometimes... it remembers."</div>
+                </div>
+
+                <div class="vo-segment">
+                    <div class="timecode">1:55 - 2:00 (Segment 21 - Outro)</div>
+                    <div class="script">[Subtle background sound fade, contemplative silence, or philosophical music swell]</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTION CHECKLIST -->
+        <section>
+            <h2>Production Checklist</h2>
+            <div class="act-marker">Step-by-Step Completion Tracker</div>
+
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1"><strong>Pre-Production</strong> — Finalize narrative outline, confirm color palette (#0a0e27, #e8e8e8, #4a1a6f, #5a6e8f), secure VO talent scheduling</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2"><strong>AI Image Generation</strong> — Generate all 26 storybook images (Midjourney/Flux), verify style consistency, export at 1080×1920px</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3"><strong>Hero Video Generation</strong> — Generate 7 motion sequences (Runway/Adobe, 2-3 seconds each), ensure smooth transitions, verify final duration under 20 seconds total</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4"><strong>VO Recording</strong> — Record 21 VO segments with exact timecodes (0:00-1:55), match emotional pacing (contemplative + revelatory), export as high-quality audio</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5"><strong>Audio Design</strong> — Create ambient soundscape (subtle background hum, neural-like tones, ethereal texture), ensure no audio conflicts with VO, mix to final master</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6"><strong>Timeline Assembly</strong> — Layer images + videos + VO + audio in Adobe Premiere/Final Cut, match VO timing exactly to visuals (0:00-1:55 total duration)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7"><strong>Motion Graphics</strong> — Add scene transitions (dissolves, fades, spiraling effects), text overlays for key concepts (Pattern Recognition, Dual Pathways, Eternal Return), ensure smooth 30 FPS playback</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check8">
+                    <label for="check8"><strong>Color Grading</strong> — Unify color palette across all assets (deep midnight #0a0e27 as base, plum accents, silver highlights), ensure blacks are true blacks, golds are warm, overall mood is contemplative</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check9">
+                    <label for="check9"><strong>QA Review</strong> — Verify 1080×1920 vertical format, check 30 FPS consistency, confirm total duration ~115 seconds, watch for audio sync issues, ensure colors match palette exactly</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check10">
+                    <label for="check10"><strong>Export & Optimization</strong> — Export final master (ProRes/DNxHD), create YouTube Shorts-optimized version (H.264, 40 Mbps target), verify file integrity</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check11">
+                    <label for="check11"><strong>Platform Upload</strong> — Upload to YouTube with SEO title/description, add relevant tags (déjà vu, neuroscience, psychology, consciousness, symbolism), schedule posting</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check12">
+                    <label for="check12"><strong>Performance Monitoring</strong> — Track view metrics, engagement rate, viewer retention, adjust future content based on performance analytics</label>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            }).catch(() => {
+                alert('Copy failed. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
